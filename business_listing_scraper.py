@@ -54,6 +54,7 @@ class BusinessListingScraper:
         soup = BeautifulSoup(self.driver.page_source, 'html.parser')
         hrefs = soup.find_all('a', href=re.compile(self.weblink_constant))
         links = [x['href'].strip(self.weblink_constant) for x in hrefs]
+        print(len(links), links)
         return list(set(links))
 
     def process_page(self):
@@ -80,7 +81,7 @@ class BusinessListingScraper:
 
 if __name__ == '__main__':
     urls = ['http://www.manta.com/mb_53_G4_CKV/information_technology/las_vegas_nv?pg={}'.format(x)
-            for x in range(1, 2)]
+            for x in range(8, 10)]
 
     for url in urls:
         print(url)

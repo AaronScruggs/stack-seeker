@@ -50,4 +50,3 @@ class StackScraper:
             csvwriter = csv.writer(file)
             data = [self.company_website] + results
             csvwriter.writerow(data)
-
