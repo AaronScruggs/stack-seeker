@@ -1,17 +1,18 @@
-import requests
 from bs4 import BeautifulSoup
-import csv
-from global_variables import proxy_list, request_headers
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.common.proxy import *
 import re
 from stack_scraper import StackScraper
 import time
+import logging
 
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+handler = logging.FileHandler('info_logs.log')
+handler.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
 
 class BusinessListingScraper:
     def __init__(self,
@@ -72,6 +73,8 @@ class BusinessListingScraper:
             if website_list:
                 self.lookup_website_list(website_list)
                 break
+            elif i==3:
+                logger.info('missed: {}'.format(url))
             else:
                 continue
         self.driver.quit()
@@ -80,8 +83,8 @@ class BusinessListingScraper:
 
 
 if __name__ == '__main__':
-    urls = ['http://www.manta.com/mb_53_G4_CKV/information_technology/las_vegas_nv?pg={}'.format(x)
-            for x in range(8, 10)]
+    urls = ['http://www.manta.com/mb_53_A0_CKV/advertising_and_marketing/las_vegas_nv?pg={}'.format(x)
+            for x in range(1, 20)]
 
     for url in urls:
         print(url)
