@@ -24,14 +24,13 @@ class BusinessListingScraper:
         self.tech_term = tech_term
 
     def init_selenium_scraper(self):
-        myProxy = '119.237.211.19'
+        myProxy = '54.244.58.13'
         profile = webdriver.FirefoxProfile()
         profile.set_preference("network.proxy.type", 1)
         profile.set_preference("network.proxy.http", myProxy)
         profile.set_preference("network.proxy.http_port", 3128)
         profile.update_preferences()
         driver = webdriver.Firefox(firefox_profile=profile)
-        # driver.set_page_load_timeout(5)
         self.driver = driver
 
     # def request_html(self, page_num):
@@ -80,13 +79,19 @@ class BusinessListingScraper:
         self.driver.quit()
 
 
-
-
 if __name__ == '__main__':
-    urls = ['http://www.manta.com/mb_53_A0_CKV/advertising_and_marketing/las_vegas_nv?pg={}'.format(x)
-            for x in range(1, 20)]
+    urls = ['http://www.manta.com/mb_55_AA185000_CKV/business_services_nec/las_vegas_nv?pg={}'.format(x)
+            for x in range(1, 101)]
 
     for url in urls:
         print(url)
         bls = BusinessListingScraper(url)
         bls.process_page()
+
+# myProxy = '54.244.58.13'
+# profile = webdriver.FirefoxProfile()
+# profile.set_preference("network.proxy.type", 1)
+# profile.set_preference("network.proxy.http", myProxy)
+# profile.set_preference("network.proxy.http_port", 3128)
+# profile.update_preferences()
+# driver = webdriver.Firefox(firefox_profile=profile)
