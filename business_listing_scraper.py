@@ -24,7 +24,7 @@ class BusinessListingScraper:
         self.tech_term = tech_term
 
     def init_selenium_scraper(self):
-        myProxy = '54.244.58.13'
+        myProxy = '52.197.1.102'
         profile = webdriver.FirefoxProfile()
         profile.set_preference("network.proxy.type", 1)
         profile.set_preference("network.proxy.http", myProxy)
@@ -81,14 +81,17 @@ class BusinessListingScraper:
 
 if __name__ == '__main__':
     urls = ['http://www.manta.com/mb_55_AA185000_CKV/business_services_nec/las_vegas_nv?pg={}'.format(x)
-            for x in range(1, 101)]
+            for x in range(2, 50)]  # 101
 
     for url in urls:
         print(url)
         bls = BusinessListingScraper(url)
-        bls.process_page()
+        try:
+            bls.process_page()
+        except:
+            bls.driver.quit()
 
-# myProxy = '54.244.58.13'
+# myProxy = '52.197.1.102'
 # profile = webdriver.FirefoxProfile()
 # profile.set_preference("network.proxy.type", 1)
 # profile.set_preference("network.proxy.http", myProxy)
