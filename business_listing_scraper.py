@@ -80,8 +80,8 @@ class BusinessListingScraper:
 
 
 if __name__ == '__main__':
-    urls = ['http://www.manta.com/mb_55_AA185000_CKV/business_services_nec/las_vegas_nv?pg={}'.format(x)
-            for x in range(2, 50)]  # 101
+    urls = ['http://www.manta.com/mb_54_AA02C_CKV/office_equipment/las_vegas_nv?pg={}'.format(x)
+            for x in range(1, 4)]
 
     for url in urls:
         print(url)
